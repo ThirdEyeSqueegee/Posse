@@ -1,67 +1,53 @@
 import logo from "./logo.svg";
 import "./App.css";
+import React, { Component, Fragment } from "react";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { Form, Container } from "react-bootstrap";
 import { Alert } from "react-bootstrap";
-import { Breadcrumb } from "react-bootstrap";
-import { Card } from "react-bootstrap";
-import { Row, Col } from "react-bootstrap";
-import { Container } from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-function MyCard() {
+const axios = require("axios");
+
+function MyLogin() {
+    const [state, setState] = useState({
+        username: null,
+        password: null,
+        verified: false,
+    });
+    const handleChange = (e) => {
+        var val = null;
+        if (e.target.value !== "") val = e.target.value;
+        setState({ ...state, [e.target.id]: val });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        axios.post("http://localhost:5000/login", state).then((response) => {
+            console.log(response.data.is_valid);
+            if (response.data.is_valid) setState({ ...state, verified: true });
+        });
+    };
+
     return (
-        <Card border="info" style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="../../logo512.png" />
-            <Card.Body className="mb-0">
-                <Card.Title>This is a CARD</Card.Title>
-                <Card.Subtitle>They look useful.</Card.Subtitle>
-                <Card.Text>Probably gonna use em</Card.Text>
-            </Card.Body>
-        </Card>
-    );
-}
-
-function MyAlert() {
-    const [show, setShow] = useState(true);
-
-    if (show) {
-        return (
-            <Alert
-                variant="success"
-                style={{ width: "18rem" }}
-                onClose={() => setShow(false)}
-                dismissible
-            >
-                <Alert.Heading>This is an Alert</Alert.Heading>
-                <p className="mb-0">Lorum Ipsum Dolor Ret?</p>
-                <hr />
-                <p className="mb-0">Non Classy Text</p>
-            </Alert>
-        );
-    }
-    return <h1>The ALERT disappeared!!!</h1>;
-}
-
-function MyBreadcrumb() {
-    return (
-        <Breadcrumb>
-            <Breadcrumb.Item href="http://python.org">
-                Wanna download python?
-            </Breadcrumb.Item>
-            <Breadcrumb.Item active>
-                root (This is a BREADCRUMB)
-            </Breadcrumb.Item>
-        </Breadcrumb>
-    );
-}
-
-function MyButton() {
-    return (
-        <Button variant="primary" href="http://python.org">
-            This is a BUTTON, it goes to python.org
-        </Button>
+        <Container>
+            {state.verified && <Alert variant="success">Logged In!</Alert>}
+            <h1>{state.username + " " + state.password}</h1>
+            <Form onChange={handleChange} onSubmit={handleSubmit} inline>
+                <Form.Group controlId="username">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control type="text" placeholder="username" />
+                </Form.Group>
+                <Form.Group controlId="password">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type="password" placeholder="password" />
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                    Submit
+                </Button>
+            </Form>
+        </Container>
     );
 }
 
@@ -69,25 +55,24 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <Container fluid="md">
-                    <Row>
-                        <MyBreadcrumb />
-                    </Row>
-                    <Row>
-                        <MyButton />
-                    </Row>
-                    <Row>
-                        <Col>
-                            <MyAlert />
-                        </Col>
-                        <Col>
-                            <MyCard />
-                        </Col>
-                    </Row>
-                </Container>
+                <MyLogin />
             </header>
         </div>
     );
 }
+
+/*import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import Quotes from "./Quotes";
+function App() {
+    return (
+        <div className="App">
+            <header className="App-header">
+                <Quotes />
+            </header>
+        </div>
+    );
+}*/
 
 export default App;
