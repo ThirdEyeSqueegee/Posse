@@ -1,3 +1,3 @@
 const express = require("express");
-const bcrypt = require("bcrypt");
+const groupController = require("../controllers/groupController");
 const router = express.Router();
