@@ -10,86 +10,77 @@
 
 <body>
 
-    <!-- nav bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
-        <div class="innerHeaderContainer">
-            <div class="row">
-                <div class="col-lg-2"></div>
-                <div class="col-lg-6">
-                    <a class="navbar-brand" id="name" href="#">Posse</a>
-                </div>
-                <div class="col-lg-4">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <a class="nav-item nav-link" id="navlinks" href="home.html">Home</a>
-                            <span class="nav-item nav-link" id="navlinks">|</span>
-                            <a class="nav-item nav-link" id="navlinks" href="profile.html">Profile</a>
+    <div class="innerHeaderContainer" style="background-color: #050a20;" id="header">
+        <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3">
+                <a class="navbar-brand" id="name" href="./home.html" style="color: #ffffff;">Posse</a>
+            </div>
+            <div class="col-lg-6"></div>
+            <div class="col-lg-2">
+                <button type="button" class="btn btn-dark" id="logout">Logout</button>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="outerContainer">
+        <div class="row">
+            <div class="col-lg-2">
+                <nav class="nav flex-column" style="background-color: #050a20;" id="navbar">
+                    <a class="nav-link" href="./home.html" style="color: rgb(184, 184, 184);">Home</a>
+                    <a class="nav-link" href="./profile.html" style="color: rgb(184, 184, 184);">Profile</a>
+                </nav>
+            </div>
+            <div class="col-lg-10">
+
+
+                <div class="icontainer">
+                    <!-- main heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Home</h1>
+                            <hr>
                         </div>
                     </div>
-                </div>
+                    <!-- Current Groups -->
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10" id="p1">
+                            <h3>Your Active Groups</h3>
+                            <div id="userGroups"></div>
+                            <p>***This area will need to be populated with names of current Groups
+                                from DB and links to them. I can help write some of that JS later. We
+                                will use the id "userGroups" for JS to know where to place them.
+                            </p>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <!-- contact and skills -->
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10" id="contact-info-column">
+                            <h3>Join an Existing Group</h3>
+                            <button type="button" class="btn btn-dark btn-lg" id="joinGroup">Join a Group</button>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
 
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10" id="contact-info-column">
+                            <h3>Create Your Own Group</h3>
+                            <button type="button" class="btn btn-dark btn-lg" id="createGroup">Create a Group</button>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+
+                </div>
             </div>
         </div>
-    </nav>
 
-    <div class = "outerIContainer">
-        <div class= "row">
-            <div class = "col-lg-2"></div>
-            <div class = "col-lg-8">
-
-
-              <div class = "icontainer">
-                  <!-- main heading -->
-                  <div class = "row">
-                  <div class = "col-lg-12">
-                      <h1>Home</h1>
-                      <hr>
-                  </div>
-              </div>
-              <!-- Current Groups -->
-              <div class = "row">
-                  <div class = "col-lg-1"></div>
-                  <div class = "col-lg-10" id = "p1">
-                    <h3>Your Active Groups</h3>
-                    <div id="userGroups"></div>
-                      <p>***This area will need to be populated with names of current Groups
-                          from DB and links to them. I can help write some of that JS later. We 
-                          will use the id "userGroups" for JS to know where to place them.
-                      </p>
-                  </div>
-                  <div class = "col-lg-1"></div>
-              </div>
-          <!-- contact and skills -->
-              <div class = "row">
-                  <div class = "col-lg-1"></div>
-                  <div class = "col-lg-10" id= "contact-info-column"> 
-                      <h3>Join an Existing Group</h3>
-                      <button type="button" class="btn btn-dark" id="joinGroup">Join a Group</button>
-                  </div>
-                  <div class = "col-lg-1"></div>
-              </div>
-
-              <div class = "row">
-                <div class = "col-lg-1"></div>
-                <div class = "col-lg-10" id= "contact-info-column"> 
-                    <h3>Create Your Own Group!</h3>
-                    <button type="button" class="btn btn-dark" id="createGroup">Create a Group</button>
-                </div>
-                <div class = "col-lg-1"></div>
-            </div>
-          
-          </div>
-          </div>
-
-            </div>
-            <div class = "col-lg-2"></div>
-
-        </div>
+    </div>
 
 
 
