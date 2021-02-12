@@ -6,12 +6,14 @@ const userSchema = new Schema({
     name: {
         type: String,
         required: true,
+        lowercase: true,
         maxLength: 50,
     },
     username: {
         type: String,
         required: true,
         unique: true,
+        lowercase: true,
         minLength: 5,
         maxLength: 50,
     },
@@ -24,7 +26,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        maxLength: 25,
+        maxLength: 75, // need long enough length to store hash!!! (60 byte string max)
     },
     interests: Array,
     joined: Date,
