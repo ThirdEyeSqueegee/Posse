@@ -26,7 +26,7 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        maxLength: 75, // need long enough length to store hash!!! (60 byte string max)
+        maxLength: 75,
     },
     interests: Array,
     joined: Date,
