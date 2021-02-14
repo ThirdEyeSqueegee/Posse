@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Posse - Login</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div class="innerHeaderContainer" style="background-color: #050a20;" id="header">
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3">
+        <a class="navbar-brand" id="name" href="./login.html" style="color: #ffffff;">Posse</a>
+      </div>
+      <div class="col-lg-6"></div>
+      <div class="col-lg-2">
+      </div>
+    </div>
+  </div>
+  <div class="outerContainer">
+    <div class="row">
+      <div class="col-lg-2">
+        <nav class="nav flex-column" style="background-color: #050a20;" id="navbar">
+          <a class="nav-link disabled" href="./home.html" style="color: rgb(184, 184, 184);" aria-disabled="true">Home</a>
+          <a class="nav-link disabled" href="./profile.html" style="color: rgb(184, 184, 184);" aria-disabled="true">Profile</a>
+        </nav>
+      </div>
+      <div class="col-lg-5">
+        <div class="icontainer">
+          <!-- Username -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10" id="p1">
+              <h3>Login</h3>
+              <div id="login-un">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="login-username" placeholder="Username" aria-label="Username"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
+          <!-- Password -->
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10" id="p1">
+              <div id="login-pw">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">*</span>
+                  <input type="text" class="form-control" id="login-password" placeholder="Password" aria-label="Password"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
+            <div class="row">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-10" id="contact-info-column">
+                <button type="button" class="btn btn-dark btn-lg" id="loginBtn">Login</button>
+              </div>
+              <div class="col-lg-1"></div>
+            </div>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="icontainer">
+          <div class="row">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-10" id="p1">
+              <h3>Register</h3>
+
+          <!-- Email -->
+          <div id="register-e">
+            <div class="input-group mb-3">
+              <span class="input-group-text">@</span>
+              <input type="text" class="form-control" id="register-email" placeholder="Email" aria-label="Email"
+                aria-describedby="basic-addon1">
+            </div>
+              <!-- Username -->
+              <div id="register-un">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="register-username" placeholder="Username" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <div class="col-lg-1"></div>
+          </div>
+          <!-- Password -->
+              <div id="register-pw">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">*</span>
+                  <input type="text" class="form-control"  id="register-password" placeholder="Password" aria-label="Password"
+                    aria-describedby="basic-addon1">
+                </div>
+              </div>
+              <div class="col-lg-1"></div>
+            </div>
+            <div class="row">
+              <div class="col-lg-1"></div>
+              <div class="col-lg-10" id="contact-info-column">
+                <button type="button" class="btn btn-dark btn-lg" id="registerBtn">Register</button>
+              </div>
+              <div class="col-lg-1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="config.js"></script>
+
+</body>
+</html>
