@@ -6,7 +6,10 @@ const chatRouter = require("./chatRoute");
 const router = express.Router();
 
 router.get("/", function (req, res) {
-    res.send("GET REQUEST FOR HOME PAGE --BOILERPLATE STATEMENT--");
+    res.status(200).json({
+        test: "GET REQUEST FOR HOME PAGE --BOILERPLATE STATEMENT--",
+    });
+    //res.send("GET REQUEST FOR HOME PAGE --BOILERPLATE STATEMENT--");
 });
 router.use("/user", userRouter);
 router.use("/group", groupRouter);
