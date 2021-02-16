@@ -14,31 +14,52 @@
         />
 
         <!-- Custom CSS -->
-        <link href="../assets/styles/login.css" rel="stylesheet" />
+        <link href="assets/styles/register.css" rel="stylesheet" />
 
         <title>Posse</title>
     </head>
     <body class="text-center">
         <main class="form-signin">
-            <form>
+            <form action="/register" method="post">
                 <img
                     class="mb-4"
-                    src="../assets/images/logo.svg"
+                    src="assets/images/logo.svg"
                     width="100"
                     height="100"
                 />
                 <h1 class="h3 mb-4">
                     Welcome to Posse! <br />
-                    Please sign in to continue:
+                    Please enter the following:
                 </h1>
+                <label class="visually-hidden" for="inputName">Name</label>
+                <input
+                    id="inputName"
+                    class="form-control"
+                    type="text"
+                    name="name"
+                    placeholder="Name"
+                    required
+                    autofocus
+                />
                 <label class="visually-hidden" for="inputUsername"
-                    >Username or email</label
+                    >Username</label
                 >
                 <input
                     id="inputUsername"
                     class="form-control"
                     type="text"
-                    placeholder="Username or email"
+                    name="username"
+                    placeholder="Username"
+                    required
+                    autofocus
+                />
+                <label class="visually-hidden" for="inputUsername">Email</label>
+                <input
+                    id="inputEmail"
+                    class="form-control"
+                    type="text"
+                    name="email"
+                    placeholder="Email"
                     required
                     autofocus
                 />
@@ -53,9 +74,16 @@
                     required
                 />
             </form>
-            <button class="w-100 mt-4 btn btn-lg btn-secondary" type="submit">
-                Sign in
+            <button
+                class="w-100 mt-4 mb-4 btn btn-lg btn-secondary"
+                type="submit"
+            >
+                Register
             </button>
+            Already have an account?
+            <a href="login.html" class="link-secondary" rel="noopener"
+                >Sign in</a
+            >
         </main>
 
         <!-- Bootstrap Bundle with Popper -->

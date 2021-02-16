@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const passportLocalMongoose = require("passport-local-mongoose");
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
@@ -37,16 +37,6 @@ const userSchema = new Schema({
     membershipCount: Number,
 });
 
-userSchema.pre("save", (next) => {
-    const saltRounds = 10;
-    if (this.modifiedPaths().includes("password")) {
-        bcrypt.hash(this.password, saltRounds, (err, hash) => {
-            this.password = hash;
-            next();
-        });
-    } else {
-        next();
-    }
-});
+userSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model("User", userSchema);
