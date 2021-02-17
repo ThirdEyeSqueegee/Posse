@@ -1,31 +1,31 @@
 {
-  "name": "posse",
-  "version": "1.0.0",
-  "description": "Full-stack group-finding web app for UCLA CS 97 (Winter 2021).",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "server": "nodemon index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThirdEyeSqueegee/Posse.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ThirdEyeSqueegee/Posse/issues"
-  },
-  "homepage": "https://github.com/ThirdEyeSqueegee/Posse#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "mongoose": "^5.11.16",
-    "nodemon": "^2.0.7",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^6.1.0",
-    "path": "^0.12.7"
-  }
+    "name": "posse",
+    "version": "1.0.0",
+    "description": "Full-stack group-finding web app for UCLA CS 97 (Winter 2021).",
+    "main": "index.js",
+    "scripts": {
+        "start": "node index.js",
+        "server": "nodemon index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ThirdEyeSqueegee/Posse.git"
+    },
+    "author": "",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ThirdEyeSqueegee/Posse/issues"
+    },
+    "homepage": "https://github.com/ThirdEyeSqueegee/Posse#readme",
+    "dependencies": {
+        "bcrypt": "^5.0.0",
+        "body-parser": "^1.19.0",
+        "cors": "^2.8.5",
+        "express": "^4.17.1",
+        "mongoose": "^5.11.16",
+        "morgan": "^1.10.0",
+        "nodemon": "^2.0.7",
+        "path": "^0.12.7",
+        "validator": "^13.5.2"
+    }
 }
