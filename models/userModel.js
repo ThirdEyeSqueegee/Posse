@@ -31,12 +31,13 @@ userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
         this.password = await bcrypt.hash(this.password, saltRounds);
+        return next();
     } catch (err) {
         return next(err);
     }
 });
 
-userSchema.methods.validatePassword = async function validatePassword(data) {
+userSchema.methods.validatePassword = async function (data) {
     return bcrypt.compare(data, this.password);
 };
 

@@ -9,7 +9,7 @@ exports.handleLogin = (req, res) => {
             req.session.loggedIn = true;
             //res.redirect("/home")
         } else {
-            // TODO: Failed login;
+            res.redirect("/");
         }
     });
 };
