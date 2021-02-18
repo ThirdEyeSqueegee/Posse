@@ -7,6 +7,7 @@ const groupSchema = new Schema({
         required: true,
         maxLength: 50,
     },
+    theme: String,
     owner: String,
     created: Date,
     members: Array,

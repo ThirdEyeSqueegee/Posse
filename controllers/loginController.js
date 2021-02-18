@@ -1,13 +1,15 @@
-const User = require("../models/userModel");
+const User = require("../models/userModel"),
+    failedLogin = require("../public/assets/js/failedLogin");
 
 exports.handleLogin = (req, res) => {
-    const currentUser = User.findOne(req.body.email);
-    if (
-        currentUser !== null &&
-        currentUser.validatePassword(req.body.password)
-    ) {
-        // TODO: Implement sessions and user authentication
-    } else {
-        // ToDO: Handle bad login
-    }
+    User.findOne({ email: req.body.email }, (err, user) => {
+        console.log(user);
+        if (err) throw err;
+        if (user !== null && user.validatePassword(req.body.password)) {
+            req.session.loggedIn = true;
+            //res.redirect("/home")
+        } else {
+            // TODO: Failed login;
+        }
+    });
 };

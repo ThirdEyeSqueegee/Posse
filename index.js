@@ -1,14 +1,20 @@
 const cors = require("cors"),
     express = require("express"),
-    path = require("path"),
-    db = require(__dirname + "/config.js");
-
-const port = process.env.port || 3301,
+    session = require("express-session"),
+    db = require(__dirname + "/config.js"),
+    port = process.env.port || 3301,
     app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+app.use(
+    session({
+        secret: "It's forty-two",
+        saveUninitialized: false,
+        resave: false,
+    })
+);
 
 const registerRoute = require("./routes/registerRoute"),
     loginRoute = require("./routes/loginRoute"),

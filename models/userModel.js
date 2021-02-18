@@ -18,13 +18,13 @@ const userSchema = new Schema({
     password: {
         type: String,
     },
-    interests: Array,
-    joined: Date,
-    groupsOwned: Array,
+    // interests: Array,
+    // joined: Date,
+    // groupsOwned: Array,
     isAdmin: Boolean,
-    memberOf: Array,
-    ownedCount: Number,
-    membershipCount: Number,
+    // memberOf: Array,
+    // ownedCount: Number,
+    // membershipCount: Number,
 });
 
 userSchema.pre("save", async function (next) {
@@ -36,7 +36,7 @@ userSchema.pre("save", async function (next) {
     }
 });
 
-userSchema.methods.validatePassword = async function (data) {
+userSchema.methods.validatePassword = async function validatePassword(data) {
     return bcrypt.compare(data, this.password);
 };
 
