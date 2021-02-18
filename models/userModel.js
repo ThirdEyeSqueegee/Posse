@@ -1,32 +1,22 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
-const { Schema } = mongoose;
+const mongoose = require("mongoose"),
+    bcrypt = require("bcrypt"),
+    { Schema } = mongoose,
+    saltRounds = 10;
 
 const userSchema = new Schema({
     name: {
         type: String,
-        required: true,
-        lowercase: true,
-        maxLength: 50,
     },
     username: {
         type: String,
-        required: true,
         unique: true,
-        lowercase: true,
-        minLength: 5,
-        maxLength: 50,
     },
     email: {
         type: String,
-        required: true,
         unique: true,
-        lowercase: true,
     },
     password: {
         type: String,
-        required: true,
-        maxLength: 75,
     },
     interests: Array,
     joined: Date,
@@ -37,6 +27,17 @@ const userSchema = new Schema({
     membershipCount: Number,
 });
 
-userSchema.plugin(passportLocalMongoose);
+userSchema.pre("save", async function (next) {
+    if (!this.isModified("password")) return next();
+    try {
+        this.password = await bcrypt.hash(this.password, saltRounds);
+    } catch (err) {
+        return next(err);
+    }
+});
+
+userSchema.methods.validatePassword = async function (data) {
+    return bcrypt.compare(data, this.password);
+};
 
 module.exports = mongoose.model("User", userSchema);
