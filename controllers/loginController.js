@@ -1,5 +1,4 @@
-const User = require("../models/userModel"),
-    failedLogin = require("../public/assets/js/failedLogin");
+const User = require("../models/userModel");
 
 exports.handleLogin = (req, res) => {
     User.findOne({ email: req.body.email }, (err, user) => {
