@@ -3,7 +3,7 @@ const mongoose = require("mongoose"),
 
 const groupSchema = new Schema({
     name: String,
-    theme: String,
+    description: String,
     owner: String,
     created: Date,
     members: Array,

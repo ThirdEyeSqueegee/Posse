@@ -1,7 +1,7 @@
 const cors = require("cors"),
     express = require("express"),
     session = require("express-session"),
-    db = require(__dirname + "/config.js"),
+    db = require("./config"),
     port = process.env.port || 3301,
     app = express();
 
@@ -19,17 +19,19 @@ app.use(
 const registerRoute = require("./routes/registerRoute"),
     loginRoute = require("./routes/loginRoute"),
     logoutRoute = require("./routes/logoutRoute"),
-    //profileRoute = require("./routes/profileRoute")
-    userRoute = require("./routes/userRoute");
-//groupRoute = require("./routes/groupRoute")
+    groupRoute = require("./routes/groupRoute"),
+    postRoute = require("./routes/postRoute");
+//profileRoute = require("./routes/profileRoute")
+//userRoute = require("./routes/userRoute");
 
 app.use("/", express.static("public", { index: "login.html" }));
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
+app.use("/group", groupRoute);
+//app.use("/post", postRoute);
 //app.use("/profile", profileRoute);
 //app.use("/user", userRoute);
-//app.use("/group", groupRoute);
 
 app.listen(port, () => {
     console.log("Listening at http://localhost:" + port);

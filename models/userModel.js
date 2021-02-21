@@ -9,7 +9,6 @@ const userSchema = new Schema({
     email: String,
     password: String,
     groupsOwned: Array,
-    isAdmin: Boolean,
 });
 
 userSchema.pre("save", async function (next) {

@@ -5,10 +5,11 @@ exports.handleLogin = (req, res) => {
         if (err) throw err;
         if (user !== null && user.validatePassword(req.body.password)) {
             req.session.loggedIn = true;
-            res.redirect("home.html");
+            req.session.user = user.name;
+            res.status(200).redirect("home.html");
         } else {
             req.session.loggedIn = false;
-            res.redirect("/");
+            res.status(405).redirect("/");
         }
     });
 };
