@@ -2,11 +2,7 @@ const mongoose = require("mongoose"),
     { Schema } = mongoose;
 
 const groupSchema = new Schema({
-    name: {
-        type: String,
-        required: true,
-        maxLength: 50,
-    },
+    name: String,
     theme: String,
     owner: String,
     created: Date,

@@ -4,27 +4,12 @@ const mongoose = require("mongoose"),
     saltRounds = 10;
 
 const userSchema = new Schema({
-    name: {
-        type: String,
-    },
-    username: {
-        type: String,
-        unique: true,
-    },
-    email: {
-        type: String,
-        unique: true,
-    },
-    password: {
-        type: String,
-    },
-    // interests: Array,
-    // joined: Date,
-    // groupsOwned: Array,
+    name: String,
+    username: String,
+    email: String,
+    password: String,
+    groupsOwned: Array,
     isAdmin: Boolean,
-    // memberOf: Array,
-    // ownedCount: Number,
-    // membershipCount: Number,
 });
 
 userSchema.pre("save", async function (next) {

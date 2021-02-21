@@ -18,7 +18,7 @@ app.use(
 
 const registerRoute = require("./routes/registerRoute"),
     loginRoute = require("./routes/loginRoute"),
-    homeRoute = require("./routes/homeRoute"),
+    logoutRoute = require("./routes/logoutRoute"),
     //profileRoute = require("./routes/profileRoute")
     userRoute = require("./routes/userRoute");
 //groupRoute = require("./routes/groupRoute")
@@ -26,7 +26,7 @@ const registerRoute = require("./routes/registerRoute"),
 app.use("/", express.static("public", { index: "login.html" }));
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
-//app.use("/home", homeRoute);
+app.use("/logout", logoutRoute);
 //app.use("/profile", profileRoute);
 //app.use("/user", userRoute);
 //app.use("/group", groupRoute);

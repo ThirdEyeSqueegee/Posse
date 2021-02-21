@@ -18,9 +18,9 @@
 
         <title>Posse</title>
     </head>
-    <body class="text-center">
+    <body class="text-center text-secondary">
         <main class="form-signin">
-            <form action="/register" method="post">
+            <form action="/register" method="POST">
                 <img
                     class="mb-4"
                     src="assets/images/logo.svg"
@@ -57,7 +57,6 @@
                     maxlength="15"
                     pattern="[A-Za-z0-9]*"
                     required
-                    autofocus
                 />
                 <label class="visually-hidden" for="inputUsername">Email</label>
                 <input
@@ -67,7 +66,6 @@
                     name="email"
                     placeholder="Email"
                     required
-                    autofocus
                 />
                 <label class="visually-hidden" for="inputPassword"
                     >Password</label

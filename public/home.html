@@ -1,122 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>Posse - Home</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <!-- Bootstrap CSS -->
         <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
             rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
             crossorigin="anonymous"
         />
-        <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+
+        <!-- Custom CSS -->
+        <link href="assets/css/home.css" rel="stylesheet" />
+
+        <title>Posse - Home</title>
     </head>
-
     <body>
-        <div
-            class="innerHeaderContainer"
-            style="background-color: #050a20"
-            id="header"
-        >
-            <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-3">
-                    <a
-                        class="navbar-brand"
-                        id="name"
-                        href="./home.html"
-                        style="color: #ffffff"
-                        >Posse</a
-                    >
+        <nav class="navbar px-5 mb-4 navbar-expand-md navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="#">
+                    <img
+                        src="assets/images/logo.svg"
+                        style="filter: invert(); width: 30px"
+                    />
+                </a>
+                <a class="navbar-brand mx-auto me-auto" href="#">Posse</a>
+                <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseMenu"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapseMenu">
+                    <ul class="navbar-nav ms-auto">
+                        <div
+                            class="d-flex flex-row mx-auto justify-content-around"
+                        >
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="bottom"
+                                    title="Profile"
+                                    href="profile.html"
+                                    rel="noopener"
+                                >
+                                    <img src="assets/images/user.svg" />
+                                </a>
+                            </li>
+                            <form id="logout" action="/logout" method="POST">
+                                <input type="hidden" name="logout" />
+                            </form>
+                            <a
+                                class="nav-link"
+                                data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                title="Log out"
+                                href="#"
+                                onclick="document.getElementById('logout').submit()"
+                                rel="noopener"
+                            >
+                                <img src="assets/images/log-out.svg" />
+                            </a>
+                        </div>
+                    </ul>
                 </div>
-                <div class="col-lg-6"></div>
-                <div class="col-lg-2">
-                    <button type="button" class="btn btn-dark" id="logout">
-                        Logout
-                    </button>
+            </div>
+        </nav>
+
+        <div class="container text-center">
+            <div class="row">
+                <div class="col mx-3" id="card">
+                    <h4 class="mt-3">My groups</h4>
+                    <hr class="my-3" />
+                </div>
+                <div class="col mx-3" id="card">
+                    <h4 class="mt-3">Create a group</h4>
+                    <hr class="my-3" />
+                    <form action="/create_group" method="POST">
+                        <label class="visually-hidden" for="inputName"
+                            >Group name</label
+                        >
+                        <input
+                            id="groupName"
+                            class="form-control"
+                            type="text"
+                            name="groupName"
+                            placeholder="Group name"
+                            minlength="5"
+                            maxlength="25"
+                            pattern="[A-Za-z ]*"
+                            required
+                            autofocus
+                        />
+                        <label class="visually-hidden" for="inputUsername"
+                            >Description</label
+                        >
+                        <input
+                            id="groupDesc"
+                            class="form-control"
+                            type="text"
+                            name="groupDesc"
+                            placeholder="Description"
+                            minlength="5"
+                            maxlength="100"
+                            required
+                        />
+                        <button
+                            class="mt-4 mb-4 btn btn-secondary"
+                            type="submit"
+                        >
+                            Create group
+                        </button>
+                    </form>
+                </div>
+                <div class="col mx-3" id="card">
+                    <h4 class="mt-3">Join a group</h4>
+                    <hr class="my-3" />
+                    <form action="/find_group" method="POST">
+                        <label class="visually-hidden" for="inputUsername"
+                            >Search for a group</label
+                        >
+                        <input
+                            id="group"
+                            class="form-control"
+                            type="text"
+                            name="group"
+                            placeholder="Search for a group"
+                            minlength="5"
+                            maxlength="100"
+                            pattern="[A-za-z ]*"
+                            required
+                        />
+                        <button
+                            class="mt-4 mb-4 btn btn-secondary"
+                            type="submit"
+                        >
+                            Search
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
 
-        <div class="outerContainer">
-            <div class="row">
-                <div class="col-lg-2">
-                    <nav
-                        class="nav flex-column"
-                        style="background-color: #050a20"
-                        id="navbar"
-                    >
-                        <a
-                            class="nav-link"
-                            href="./home.html"
-                            style="color: rgb(184, 184, 184)"
-                            >Home</a
-                        >
-                        <a
-                            class="nav-link"
-                            href="./profile.html"
-                            style="color: rgb(184, 184, 184)"
-                            >Profile</a
-                        >
-                    </nav>
-                </div>
-                <div class="col-lg-10">
-                    <div class="icontainer">
-                        <!-- main heading -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <h1>Home</h1>
-                                <hr />
-                            </div>
-                        </div>
-                        <!-- Current Groups -->
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-10" id="p1">
-                                <h3>Your Active Groups</h3>
-                                <div id="userGroups"></div>
-                                <p>
-                                    ***This area will need to be populated with
-                                    names of current Groups from DB and links to
-                                    them. I can help write some of that JS
-                                    later. We will use the id "userGroups" for
-                                    JS to know where to place them.
-                                </p>
-                            </div>
-                            <div class="col-lg-1"></div>
-                        </div>
-                        <!-- contact and skills -->
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-10" id="contact-info-column">
-                                <h3>Join an Existing Group</h3>
-                                <button
-                                    type="button"
-                                    class="btn btn-dark btn-lg"
-                                    id="joinGroup"
-                                >
-                                    Join a Group
-                                </button>
-                            </div>
-                            <div class="col-lg-1"></div>
-                        </div>
+        <!-- Bootstrap Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+            crossorigin="anonymous"
+        ></script>
 
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-10" id="contact-info-column">
-                                <h3>Create Your Own Group</h3>
-                                <button
-                                    type="button"
-                                    class="btn btn-dark btn-lg"
-                                    id="createGroup"
-                                >
-                                    Create a Group
-                                </button>
-                            </div>
-                            <div class="col-lg-1"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Custom JS -->
+        <script src="assets/js/tooltips.js"></script>
     </body>
 </html>
