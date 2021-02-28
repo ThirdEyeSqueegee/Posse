@@ -1,14 +1,14 @@
-const e = require("cors");
 const Group = require("../models/groupModel");
 
 exports.createGroup = (req, res) => {
-    Group.findOne(req.body, (err, group) => {
+    Group.findOne({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group === null) {
             const newGroup = new Group(req.body);
             newGroup.set({ owner: req.session.user });
             newGroup.save();
-            res.status(201).json(group);
+            req.session.currentGroup = req.params.id;
+            res.status(200).redirect("../group.html");
         } else {
             res.status(404);
         }
@@ -16,7 +16,7 @@ exports.createGroup = (req, res) => {
 };
 
 exports.getGroup = (req, res) => {
-    Group.findOne(req.body, (err, group) => {
+    Group.findOne({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group !== null) {
             res.status(200).json(group);
@@ -24,6 +24,11 @@ exports.getGroup = (req, res) => {
             res.status(404);
         }
     });
+};
+
+exports.showGroup = (req, res) => {
+    req.session.currentGroup = req.params.id;
+    res.status(200).redirect("../group.html");
 };
 
 exports.updateGroup = (req, res) => {

@@ -1,4 +1,4 @@
 exports.handleLogout = (req, res) => {
-    req.session.loggedIn = false;
+    req.session.destroy();
     res.status(200).redirect("login.html");
 };

@@ -4,9 +4,11 @@ const express = require("express"),
 
 router.post("/createGroup", groupController.createGroup);
 
-router.get("/getGroup", groupController.getGroup);
+router.post("/getGroup", groupController.getGroup);
 
-router.put("/updateGroup", groupController.updateGroup);
+router.get("/:id", groupController.showGroup);
+
+router.post("/updateGroup", groupController.updateGroup);
 
 router.delete("/deleteGroup", groupController.deleteGroup);
 
