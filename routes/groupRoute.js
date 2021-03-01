@@ -6,6 +6,8 @@ router.post("/createGroup", groupController.createGroup);
 
 router.post("/getGroup", groupController.getGroup);
 
+router.get("/getExistingGroup", groupController.getExistingGroup);
+
 router.get("/:id", groupController.showGroup);
 
 router.post("/updateGroup", groupController.updateGroup);

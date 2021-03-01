@@ -6,7 +6,11 @@ $("#searchForm").on("submit", (event) => {
         (group) => {
             $("#searchResults").empty();
             $("#searchResults").append(
-                '<a href="/group/' + group._id + '">' + group.name + "</a><br>"
+                '<a id="groupLink" href="/group/' +
+                    group._id +
+                    '">' +
+                    group.name +
+                    "</a>"
             );
         },
         "json"

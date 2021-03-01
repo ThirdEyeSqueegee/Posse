@@ -5,7 +5,10 @@ exports.createGroup = (req, res) => {
         if (err) throw err;
         if (group === null) {
             const newGroup = new Group(req.body);
+            const date = Date();
             newGroup.set({ owner: req.session.user });
+            newGroup.set({ created: date });
+            newGroup.members.push(req.session.user);
             newGroup.save();
             req.session.currentGroup = req.params.id;
             res.status(200).redirect("../group.html");
@@ -19,6 +22,7 @@ exports.getGroup = (req, res) => {
     Group.findOne({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group !== null) {
+            req.session.currentGroup = group;
             res.status(200).json(group);
         } else {
             res.status(404);
@@ -26,14 +30,21 @@ exports.getGroup = (req, res) => {
     });
 };
 
+exports.getExistingGroup = (req, res) => {
+    if (req.session.currentGroup !== null) {
+        res.status(200).json(req.session.currentGroup);
+    } else {
+        res.status(404);
+    }
+};
+
 exports.showGroup = (req, res) => {
-    req.session.currentGroup = req.params.id;
     res.status(200).redirect("../group.html");
 };
 
 exports.updateGroup = (req, res) => {
     Group.findOneAndUpdate(
-        req.body.groupName,
+        req.body.name,
         req.body,
         { new: true },
         (err, group) => {

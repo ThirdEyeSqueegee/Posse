@@ -8,7 +8,7 @@ const userSchema = new Schema({
     username: String,
     email: String,
     password: String,
-    groupsOwned: Array,
+    joined: Date,
 });
 
 userSchema.pre("save", async function (next) {
