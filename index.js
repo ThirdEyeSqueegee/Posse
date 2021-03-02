@@ -20,18 +20,16 @@ const registerRoute = require("./routes/registerRoute"),
     loginRoute = require("./routes/loginRoute"),
     logoutRoute = require("./routes/logoutRoute"),
     groupRoute = require("./routes/groupRoute"),
-    postRoute = require("./routes/postRoute");
-//profileRoute = require("./routes/profileRoute")
-//userRoute = require("./routes/userRoute");
+    postRoute = require("./routes/postRoute"),
+    userRoute = require("./routes/userRoute");
 
 app.use("/", express.static("public", { index: "login.html" }));
 app.use("/register", registerRoute);
 app.use("/login", loginRoute);
 app.use("/logout", logoutRoute);
 app.use("/group", groupRoute);
-//app.use("/post", postRoute);
-//app.use("/profile", profileRoute);
-//app.use("/user", userRoute);
+app.use("/post", postRoute);
+app.use("/user", userRoute);
 
 app.listen(port, () => {
     console.log("Listening at http://localhost:" + port);

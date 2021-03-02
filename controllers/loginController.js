@@ -7,7 +7,7 @@ exports.handleLogin = (req, res) => {
             const valid = await user.validatePassword(req.body.password);
             if (valid) {
                 req.session.loggedIn = true;
-                req.session.user = user.name;
+                req.session.user = user;
                 res.status(200).redirect("home.html");
             } else {
                 req.session.loggedIn = false;

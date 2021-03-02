@@ -30,7 +30,7 @@ exports.getGroup = (req, res) => {
     });
 };
 
-exports.getExistingGroup = (req, res) => {
+exports.getCurrentGroup = (req, res) => {
     if (req.session.currentGroup !== null) {
         res.status(200).json(req.session.currentGroup);
     } else {
@@ -43,23 +43,18 @@ exports.showGroup = (req, res) => {
 };
 
 exports.updateGroup = (req, res) => {
-    Group.findOneAndUpdate(
-        req.body.name,
-        req.body,
-        { new: true },
-        (err, group) => {
-            if (err) throw err;
-            if (group !== null) {
-                res.status(200).json(group);
-            } else {
-                res.status(404);
-            }
+    Group.findOneAndUpdate({ name: req.body.name }, req.body, (err, group) => {
+        if (err) throw err;
+        if (group !== null) {
+            res.status(200).json(group);
+        } else {
+            res.status(404);
         }
-    );
+    });
 };
 
 exports.deleteGroup = (req, res) => {
-    Group.findOneAndDelete(req.body, (err, group) => {
+    Group.findOneAndDelete({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group !== null) {
             res.status(200).json(group);
