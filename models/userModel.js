@@ -9,6 +9,7 @@ const userSchema = new Schema({
     email: String,
     password: String,
     joined: Date,
+    groups: Array,
 });
 
 userSchema.pre("save", async function (next) {

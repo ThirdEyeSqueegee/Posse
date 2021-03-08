@@ -1,4 +1,5 @@
 const Group = require("../models/groupModel");
+const User = require("../models/userModel");
 
 exports.createGroup = (req, res) => {
     Group.findOne({ name: req.body.name }, (err, group) => {
@@ -11,6 +12,13 @@ exports.createGroup = (req, res) => {
             newGroup.members.push(req.session.user);
             newGroup.save();
             req.session.currentGroup = req.params.id;
+            User.findOne({ email: req.session.user.email }, (err, user) => {
+                if (err) throw err;
+                if (user !== null) {
+                    user.groups.push(req.body.name);
+                    user.save();
+                }
+            });
             res.status(200).redirect("../group.html");
         } else {
             res.status(404);
