@@ -3,7 +3,8 @@ const Post = require("../models/postModel");
 exports.createPost = (req, res) => {
     const newPost = new Post(req.body);
     newPost.set({ author: req.session.user });
-    res.status(200).json(newPost);
+    res.status(200).redirect("../../group.html");
+
 };
 
 exports.getPost = (req, res) => {

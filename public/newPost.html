@@ -16,7 +16,7 @@
         <!-- Custom CSS -->
         <link href="assets/css/group.css" rel="stylesheet" />
 
-        <title>Posse - Group</title>
+        <title>Posse - New Post</title>
     </head>
     <body>
         <nav class="navbar px-5 mb-4 navbar-expand-md navbar-dark">
@@ -82,24 +82,17 @@
                 <div class="col" id="card">
                     <h2 class="my-3" id="groupName"></h2>
                     <hr class="my-3" />
-                    <h3 class="mt-4">Posts</h3>
-                    <button class="my-4 btn btn-md btn-secondary">
-                        <a href="./newPost.html">New Post</a>
-                    </button>
+                    <h3 class="mt-4">Create a New Post</h3>
+
+                <form action="/post//createPost" method="POST">
+                    <div class="form-group">
+                        <label for="postText">What would you like to say?</label>
+                        <textarea class="form-control" id="postText" rows="3"></textarea>
+                      </div>
+                      <button type="submit" class="ms-3 mt-4 mb-5 btn btn-md btn-secondary">Post</button>
+                    </form>
                     <h4 class="my-3" id="groupDesc"></h4>
                     <span id="posts"></span>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col me-3" id="card">
-                    <h3 class="mt-4">Members:</h3>
-                    <hr class="my-3" />
-                    <span id="members"></span>
-                </div>
-                <div class="col ms-3" id="card">
-                    <button class="my-4 btn btn-md btn-secondary">
-                        Join group
-                    </button>
                 </div>
             </div>
         </div>
