@@ -3,6 +3,7 @@ const express = require("express"),
     router = express.Router();
 
 router.get("/getCurrentUser", userController.getCurrentUser);
+
 router.get("/getUserGroups", userController.getUserGroups);
 
 module.exports = router;

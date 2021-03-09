@@ -1,34 +1,55 @@
 const User = require("../models/userModel");
 
-exports.editName = (req, res) => {
-    User.findOne({name: req}, (err, user) => {
-        if (err) throw err;
-        else{
-        user.set({name:req});
-        user.save();
-        res.status(200).redirect("./home.html");
+exports.editName = async (req, res) => {
+    await User.findOneAndUpdate(
+        { username: req.session.user.username },
+        { name: req.body.name },
+        { new: true },
+        (err, user) => {
+            if (err) throw err;
+            req.session.user.name = user.name;
+            res.status(200).redirect("../profile.html");
         }
-    });
+    );
 };
 
-exports.editUsername = (req, res) => {
-    User.findOne({username: req}, (err, user) => {
-        if (err) throw err;
-        else{
-        user.set({username:req});
-        user.save();
-        res.status(200).redirect("./home.html");
+exports.editUsername = async (req, res) => {
+    console.log(req.body);
+    await User.findOneAndUpdate(
+        { username: req.session.user.username },
+        { username: req.body.username },
+        { new: true },
+        (err, user) => {
+            if (err) throw err;
+            req.session.user.username = user.username;
+            res.status(200).redirect("../profile.html");
         }
-    });
+    );
 };
 
-exports.editEmail = (req, res) => {
-    User.findOne({email:req}, (err, user) => {
-        if (err) throw err;
-        else{
-        user.set({email:req});
-        user.save();
-        res.status(200).redirect("./home.html");
+exports.editEmail = async (req, res) => {
+    await User.findOneAndUpdate(
+        { username: req.session.user.username },
+        { email: req.body.email },
+        { new: true },
+        (err, user) => {
+            if (err) throw err;
+            req.session.user.email = user.email;
+            res.status(200).redirect("../profile.html");
         }
-    });
+    );
+};
+
+exports.editPassword = async (req, res) => {
+    if (req.body.password === req.body.confirmPassword) {
+        await User.findOne(
+            { username: req.session.user.username },
+            (err, user) => {
+                if (err) throw err;
+                user.set({ password: req.body.password });
+                user.save();
+                res.status(200).json("profile.html");
+            }
+        );
+    }
 };

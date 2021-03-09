@@ -4,6 +4,7 @@ const url =
 const options = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: true,
 };
 
 mongoose.connect(url, options).then(
