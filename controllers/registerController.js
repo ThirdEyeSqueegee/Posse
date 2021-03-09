@@ -6,7 +6,7 @@ exports.handleRegistration = (req, res) => {
         if (user === null) {
             const newUser = new User(req.body);
             const date = Date();
-            newUser.set({ joined: date });
+            newUser.joined = date;
             newUser.save();
             res.status(200).redirect("/");
         } else {

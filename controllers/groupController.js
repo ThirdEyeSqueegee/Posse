@@ -71,3 +71,23 @@ exports.deleteGroup = (req, res) => {
         }
     });
 };
+
+exports.joinGroup = async (req, res) => {
+    const user = await User.findOne({ username: req.session.user.username });
+    const group = await Group.findOne({ name: req.body.name });
+    const member =
+        (await user.groups.includes(req.body.name)) ||
+        (await group.members.includes(req.session.user.name));
+    console.log(member);
+    if (!member) {
+        user.groups.push(req.body.name);
+        group.members.push(req.session.user);
+        req.session.user.groups.push(req.body.name);
+        req.session.currentGroup.members.push(req.session.user);
+        user.save();
+        group.save();
+        res.status(200).json(group.id);
+    } else {
+        res.status(405);
+    }
+};

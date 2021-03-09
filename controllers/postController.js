@@ -14,7 +14,6 @@ exports.createPost = (req, res) => {
         }
     });
     res.status(200).redirect("../../group.html");
-
 };
 
 exports.getPost = (req, res) => {
