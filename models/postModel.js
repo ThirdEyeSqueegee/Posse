@@ -3,9 +3,8 @@ const mongoose = require("mongoose"),
     autoIncrementId = require("mongoose-sequence")(mongoose);
 
 const postSchema = new Schema({
-    text: String,
+    name: String,
     author: String,
-    group: String,
     created: Date,
 });
 

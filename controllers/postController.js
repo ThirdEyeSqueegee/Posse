@@ -1,8 +1,18 @@
 const Post = require("../models/postModel");
+const Group = require("../models/groupModel");
 
 exports.createPost = (req, res) => {
     const newPost = new Post(req.body);
+    const date = Date();
     newPost.set({ author: req.session.user });
+    newPost.set({ created: date });
+    Group.findOne({ name: req.session.currentGroup.name }, (err, group) => {
+        if (err) throw err;
+        if (group !== null) {
+            group.posts.push(newPost);
+            group.save();
+        }
+    });
     res.status(200).redirect("../../group.html");
 
 };

@@ -8,6 +8,7 @@ const groupSchema = new Schema({
     created: Date,
     members: Array,
     memberCount: Number,
+    posts: Array,
 });
 
 module.exports = mongoose.model("Group", groupSchema);
