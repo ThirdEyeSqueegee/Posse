@@ -4,7 +4,7 @@ const express = require("express"),
 
 router.get("/getCurrentGroup", groupController.getCurrentGroup);
 
-router.get("/:id", groupController.showGroup);
+router.get("/:id", groupController.getGroupById);
 
 router.delete("/deleteGroup", groupController.deleteGroup);
 

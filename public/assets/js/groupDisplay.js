@@ -1,9 +1,10 @@
 $(document).ready(() => {
     $.get("/group/getCurrentGroup", (group) => {
+        console.log(group);
         $("#groupName").append(group.name);
         $("#groupDesc").append(group.description);
-        for (var i in group.members) {
-            $("#members").append(group.members[i].name + "<br>");
+        for (let member in group.members) {
+            $("#members").append(group.members[member] + "<br>");
         }
         for (var i in group.posts) {
             $("#posts").append(group.posts[i].name + "<br><br>");
@@ -15,7 +16,6 @@ $(document).ready(() => {
             "/group/joinGroup",
             { name: $("#groupName").text() },
             (group) => {
-                console.log(group);
                 location.reload();
             }
         );

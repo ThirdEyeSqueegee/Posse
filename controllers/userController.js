@@ -1,4 +1,5 @@
-const User = require("../models/userModel");
+const Group = require("../models/groupModel"),
+    User = require("../models/userModel");
 
 exports.getCurrentUser = (req, res) => {
     if (req.session.user !== null) {
@@ -8,9 +9,16 @@ exports.getCurrentUser = (req, res) => {
     }
 };
 
-exports.getUserGroups = (req, res) => {
+exports.getUserGroups = async (req, res) => {
     if (req.session.user !== null) {
-        res.status(200).json(req.session.user);
+        groups = [];
+        for (let i = 0; i < req.session.user.groups.length; i++) {
+            const group = await Group.findById(req.session.user.groups[i]);
+            const elem = {};
+            elem[req.session.user.groups[i]] = group.name;
+            groups.push(elem);
+        }
+        res.status(200).send(groups);
     } else {
         res.status(404);
     }

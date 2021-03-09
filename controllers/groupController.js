@@ -7,15 +7,15 @@ exports.createGroup = (req, res) => {
         if (group === null) {
             const newGroup = new Group(req.body);
             const date = Date();
-            newGroup.set({ owner: req.session.user });
-            newGroup.set({ created: date });
-            newGroup.members.push(req.session.user);
+            newGroup.owner = req.session.user.username;
+            newGroup.created = date;
+            newGroup.members.push(req.session.user.username);
             newGroup.save();
-            req.session.currentGroup = req.params.id;
+            req.session.currentGroup = newGroup;
             User.findOne({ email: req.session.user.email }, (err, user) => {
                 if (err) throw err;
                 if (user !== null) {
-                    user.groups.push(req.body.name);
+                    user.groups.push(newGroup.id);
                     user.save();
                 }
             });
@@ -46,7 +46,9 @@ exports.getCurrentGroup = (req, res) => {
     }
 };
 
-exports.showGroup = (req, res) => {
+exports.getGroupById = async (req, res) => {
+    const group = await Group.findById(req.params.id);
+    req.session.currentGroup = group;
     res.status(200).redirect("../group.html");
 };
 
@@ -78,15 +80,14 @@ exports.joinGroup = async (req, res) => {
     const member =
         (await user.groups.includes(req.body.name)) ||
         (await group.members.includes(req.session.user.name));
-    console.log(member);
     if (!member) {
-        user.groups.push(req.body.name);
-        group.members.push(req.session.user);
-        req.session.user.groups.push(req.body.name);
-        req.session.currentGroup.members.push(req.session.user);
+        user.groups.push(group.id);
+        group.members.push(user.username);
+        req.session.user.groups.push(group.id);
+        req.session.currentGroup.members.push(user.username);
         user.save();
         group.save();
-        res.status(200).json(group.id);
+        res.status(200).json(group);
     } else {
         res.status(405);
     }
