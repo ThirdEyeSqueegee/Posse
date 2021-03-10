@@ -18,6 +18,7 @@ exports.createGroup = async (req, res) => {
                     if (err) throw err;
                     if (user !== null) {
                         user.groups.push(newGroup.id);
+                        req.session.user.groups.push(newGroup.id);
                         user.save();
                     }
                 }
