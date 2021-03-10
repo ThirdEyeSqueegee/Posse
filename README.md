@@ -1,6 +1,6 @@
 # Posse
 
-Full-stack group-finding web app for UCLA CS 97 (Winter 2021).
+A (very) simple full-stack web app for creating, finding, and interacting with groups.
 
 ## Stack
 

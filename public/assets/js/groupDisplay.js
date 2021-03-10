@@ -12,13 +12,15 @@ $(document).ready(() => {
                 timeStyle: "short",
             }).format(created);
             $("#posts").append(
-                group.posts[post].content +
-                    "<br>" +
+                "<h5>" +
+                    group.posts[post].content +
+                    "</h5>" +
+                    '<h6 class="text-secondary">' +
                     "- " +
                     group.posts[post].author +
                     " at " +
                     formattedDate +
-                    "<br><br>"
+                    "</h6><br><br>"
             );
         }
     });
