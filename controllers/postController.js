@@ -1,7 +1,7 @@
 const Post = require("../models/postModel");
 const Group = require("../models/groupModel");
 
-exports.createPost = (req, res) => {
+exports.createPost = async (req, res) => {
     const newPost = new Post(req.body);
     const date = Date();
     newPost.set({ author: req.session.user });
@@ -16,7 +16,7 @@ exports.createPost = (req, res) => {
     res.status(200).redirect("../../group.html");
 };
 
-exports.getPost = (req, res) => {
+exports.getPost = async (req, res) => {
     Post.findOne({ id: req.params.id }, (err, post) => {
         if (err) throw err;
         if (post !== null) {
@@ -27,7 +27,7 @@ exports.getPost = (req, res) => {
     });
 };
 
-exports.deletePost = (req, res) => {
+exports.deletePost = async (req, res) => {
     Post.findOneAndDelete({ id: req.params.id }, (err, post) => {
         if (err) throw err;
         if (post !== null) {

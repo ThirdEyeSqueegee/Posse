@@ -1,8 +1,8 @@
 const Group = require("../models/groupModel");
 const User = require("../models/userModel");
 
-exports.createGroup = (req, res) => {
-    Group.findOne({ name: req.body.name }, (err, group) => {
+exports.createGroup = async (req, res) => {
+    Group.findOne({ name: req.body.name }, async (err, group) => {
         if (err) throw err;
         if (group === null) {
             const newGroup = new Group(req.body);
@@ -12,13 +12,16 @@ exports.createGroup = (req, res) => {
             newGroup.members.push(req.session.user.username);
             newGroup.save();
             req.session.currentGroup = newGroup;
-            User.findOne({ email: req.session.user.email }, (err, user) => {
-                if (err) throw err;
-                if (user !== null) {
-                    user.groups.push(newGroup.id);
-                    user.save();
+            await User.findOne(
+                { email: req.session.user.email },
+                (err, user) => {
+                    if (err) throw err;
+                    if (user !== null) {
+                        user.groups.push(newGroup.id);
+                        user.save();
+                    }
                 }
-            });
+            );
             res.status(200).redirect("../group.html");
         } else {
             res.status(404);
@@ -26,7 +29,7 @@ exports.createGroup = (req, res) => {
     });
 };
 
-exports.getGroup = (req, res) => {
+exports.getGroup = async (req, res) => {
     Group.findOne({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group !== null) {
@@ -38,7 +41,7 @@ exports.getGroup = (req, res) => {
     });
 };
 
-exports.getCurrentGroup = (req, res) => {
+exports.getCurrentGroup = async (req, res) => {
     if (req.session.currentGroup !== null) {
         res.status(200).json(req.session.currentGroup);
     } else {
@@ -52,7 +55,7 @@ exports.getGroupById = async (req, res) => {
     res.status(200).redirect("../group.html");
 };
 
-exports.updateGroup = (req, res) => {
+exports.updateGroup = async (req, res) => {
     Group.findOneAndUpdate({ name: req.body.name }, req.body, (err, group) => {
         if (err) throw err;
         if (group !== null) {
@@ -63,7 +66,7 @@ exports.updateGroup = (req, res) => {
     });
 };
 
-exports.deleteGroup = (req, res) => {
+exports.deleteGroup = async (req, res) => {
     Group.findOneAndDelete({ name: req.body.name }, (err, group) => {
         if (err) throw err;
         if (group !== null) {

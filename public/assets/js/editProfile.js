@@ -4,7 +4,5 @@ $("#pwForm").on("submit", (event) => {
         $.post("/edit/editPassword", $("#pwForm").serialize(), (redirect) => {
             window.location = redirect;
         });
-    } else {
-        alert("Passwords do not match");
     }
 });

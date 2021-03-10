@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 
-exports.handleRegistration = (req, res) => {
+exports.handleRegistration = async (req, res) => {
     User.findOne(req.body, (err, user) => {
         if (err) throw err;
         if (user === null) {

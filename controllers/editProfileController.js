@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 
 exports.editName = async (req, res) => {
-    await User.findOneAndUpdate(
+    User.findOneAndUpdate(
         { username: req.session.user.username },
         { name: req.body.name },
         { new: true },
@@ -15,7 +15,7 @@ exports.editName = async (req, res) => {
 
 exports.editUsername = async (req, res) => {
     console.log(req.body);
-    await User.findOneAndUpdate(
+    User.findOneAndUpdate(
         { username: req.session.user.username },
         { username: req.body.username },
         { new: true },
@@ -28,7 +28,7 @@ exports.editUsername = async (req, res) => {
 };
 
 exports.editEmail = async (req, res) => {
-    await User.findOneAndUpdate(
+    User.findOneAndUpdate(
         { username: req.session.user.username },
         { email: req.body.email },
         { new: true },
@@ -42,14 +42,11 @@ exports.editEmail = async (req, res) => {
 
 exports.editPassword = async (req, res) => {
     if (req.body.password === req.body.confirmPassword) {
-        await User.findOne(
-            { username: req.session.user.username },
-            (err, user) => {
-                if (err) throw err;
-                user.set({ password: req.body.password });
-                user.save();
-                res.status(200).json("profile.html");
-            }
-        );
+        User.findOne({ username: req.session.user.username }, (err, user) => {
+            if (err) throw err;
+            user.set({ password: req.body.password });
+            user.save();
+            res.status(200).json("profile.html");
+        });
     }
 };

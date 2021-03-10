@@ -8,7 +8,7 @@ img {
     filter: invert();
 }
 
-h1 {
+:is(h1, h2, h3, h4, h5, h6) {
     color: #c7c7c7;
 }
 
@@ -50,7 +50,12 @@ h1 {
 }
 
 #inputPassword {
+    margin-bottom: -1px;
+    border-radius: 0;
+}
+
+#confirmPassword {
     margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 }

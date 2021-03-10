@@ -6,4 +6,6 @@ router.get("/getCurrentUser", userController.getCurrentUser);
 
 router.get("/getUserGroups", userController.getUserGroups);
 
+router.get("/deleteUser", userController.deleteUser);
+
 module.exports = router;

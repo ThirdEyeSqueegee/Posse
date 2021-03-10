@@ -1,6 +1,6 @@
 const User = require("../models/userModel");
 
-exports.handleLogin = (req, res) => {
+exports.handleLogin = async (req, res) => {
     User.findOne({ email: req.body.email }, async (err, user) => {
         if (err) throw err;
         if (user !== null) {

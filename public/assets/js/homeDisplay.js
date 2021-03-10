@@ -1,7 +1,7 @@
 //gets user and then gets their groups printing them line by line using for loop
-$.get("/user/getUserGroups", (groups) => {
+$.get("/user/getUserGroups", async (groups) => {
     for (let i = 0; i < groups.length; i++) {
-        $("#groups").append(
+        await $("#groups").append(
             '<a href="/group/' +
                 Object.keys(groups[i])[0] +
                 '">' +
