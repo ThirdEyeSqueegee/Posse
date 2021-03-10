@@ -81,18 +81,39 @@
             <div class="row">
                 <div class="col" id="card">
                     <h2 class="my-4" id="groupName"></h2>
-                    <hr class="my-3" />
+                    <hr class="mt-2" />
                     <h3 class="mb-4">Posts</h3>
                     <hr class="my-3" />
-                    <div id="groupPosts"></div>
-                    <a href="./newPost.html">
-                        <button class="my-4 btn btn-md btn-secondary">
-                            New Post
-                        </button>
-                    </a>
+                    <div id="posts" class="text-light overflow-auto"></div>
+                    <button
+                        class="my-4 btn btn-md btn-secondary"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapse"
+                    >
+                        New Post
+                    </button>
+                    <div class="collapse" id="collapse">
+                        <form
+                            action="/post/createPost"
+                            method="POST"
+                            class="form-signin mb-4"
+                        >
+                            <textarea
+                                class="form-control mx-auto text-light mb-2"
+                                type="text"
+                                name="postContent"
+                                placeholder="What's on your mind?"
+                            ></textarea>
+                            <button
+                                id="post"
+                                class="my-4 btn btn-sm btn-secondary"
+                            >
+                                Post
+                            </button>
+                        </form>
+                    </div>
                     <h5>Description:</h5>
                     <h6 class="my-3" id="groupDesc"></h6>
-                    <span id="posts"></span>
                 </div>
             </div>
             <div class="row mt-5">

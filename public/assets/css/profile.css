@@ -14,20 +14,6 @@ span {
     background-color: #161b22;
 }
 
-.form-control {
-    position: relative;
-    box-sizing: border-box;
-    border-color: #0d1117;
-    background-color: #30363d;
-    box-shadow: inset 0 0 3px #000000;
-}
-
-.form-control:focus {
-    z-index: 2;
-    border-color: #0d1117;
-    background-color: #30363d;
-}
-
 #groupName {
     margin-bottom: -1px;
     border-bottom-left-radius: 0px;

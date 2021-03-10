@@ -17,6 +17,8 @@ span {
 .form-control {
     position: relative;
     box-sizing: border-box;
+    height: 150px;
+    width: 750px;
     border-color: #0d1117;
     background-color: #30363d;
     box-shadow: inset 0 0 3px #000000;
@@ -28,19 +30,12 @@ span {
     background-color: #30363d;
 }
 
-#groupName {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-}
-
-#groupDesc {
-    border-top-left-radius: 0px;
-    border-top-right-radius: 0px;
-}
-
 #card {
     background-color: #0d1117;
     border-radius: 15px;
     border: 1px solid #30363d;
+}
+
+#posts {
+    max-height: 300px;
 }
