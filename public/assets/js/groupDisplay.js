@@ -3,7 +3,9 @@ $(document).ready(() => {
         $("#groupName").html(group.name);
         $("#groupDesc").html(group.description);
         for (member in group.members) {
-            $("#members").append(group.members[member] + "<br>");
+            if (group.members[member] === group.owner)
+                $("#members").append(group.members[member] + " (admin)<br>");
+            else $("#members").append(group.members[member] + "<br>");
         }
         for (post in group.posts.reverse()) {
             created = new Date(group.posts[post].created);
@@ -40,7 +42,6 @@ $(document).ready(() => {
     $("#leave").on("click", () => {
         if (confirm("Leave group?")) {
             $.get("/user/leaveGroup", (data) => {
-                console.log(data);
                 if (data === "home.html") window.location = "group.html";
                 else $("#member").html("You are not a member yet!");
             });

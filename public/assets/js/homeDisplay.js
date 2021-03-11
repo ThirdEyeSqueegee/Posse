@@ -15,15 +15,18 @@ $("#searchForm").on("submit", (event) => {
     $.post(
         "/group/getGroup",
         $("#searchForm").serialize(),
-        (group) => {
+        (groups) => {
             $("#searchResults").empty();
-            $("#searchResults").append(
-                '<a class="link-info" id="groupLink" href="/group/' +
-                    group._id +
-                    '">' +
-                    group.name +
-                    "</a>"
-            );
+            for (group in groups) {
+                $("#searchResults").append(
+                    '<a class="link-info" id="groupLink" href="/group/' +
+                        groups[group]._id +
+                        '">' +
+                        groups[group].name +
+                        "</a><br>"
+                );
+            }
+            $("#searchResults").append("<br>");
         },
         "json"
     );

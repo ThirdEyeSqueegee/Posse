@@ -41,6 +41,7 @@ exports.leaveGroup = async (req, res) => {
     ) {
         user.groups.pull(group.id);
         group.members.pull(user.username);
+        group.memberCount--;
         req.session.user = user;
         req.session.currentGroup = group;
         user.save();

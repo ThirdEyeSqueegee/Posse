@@ -32,26 +32,32 @@ exports.createGroup = async (req, res) => {
 };
 
 exports.getGroup = async (req, res) => {
-    Group.findOne(
+    // Group.findOne(
+    //     { name: { $regex: req.body.name, $options: "i" } },
+    //     (err, group) => {
+    //         if (err) throw err;
+    //         if (group !== null) {
+    //             req.session.currentGroup = group;
+    //             res.status(200).json(group);
+    //         } else {
+    //             res.status(404);
+    //         }
+    //     }
+    // );
+    Group.find(
         { name: { $regex: req.body.name, $options: "i" } },
-        (err, group) => {
+        (err, groups) => {
             if (err) throw err;
-            if (group !== null) {
-                req.session.currentGroup = group;
-                res.status(200).json(group);
-            } else {
-                res.status(404);
-            }
+            if (groups !== null) res.status(200).json(groups);
+            else res.status(404);
         }
     );
 };
 
 exports.getCurrentGroup = async (req, res) => {
-    if (req.session.currentGroup !== null) {
+    if (req.session.currentGroup !== null)
         res.status(200).json(req.session.currentGroup);
-    } else {
-        res.status(404);
-    }
+    else res.status(404);
 };
 
 exports.getGroupById = async (req, res) => {
@@ -75,7 +81,5 @@ exports.joinGroup = async (req, res) => {
         user.save();
         group.save();
         res.status(200).json(group);
-    } else {
-        res.status(200).json({ joined: false });
-    }
+    } else res.status(200).json({ joined: false });
 };
