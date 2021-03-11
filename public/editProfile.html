@@ -82,7 +82,11 @@
             <div class="row">
                 <div class="col">
                     <main class="form-signin mx-auto">
-                        <form action="/edit/editName" method="POST">
+                        <form
+                            id="editForm"
+                            action="/edit/editName"
+                            method="POST"
+                        >
                             <input
                                 id="inputName"
                                 class="form-control text-light mb-3"
@@ -93,14 +97,7 @@
                                 maxlength="25"
                                 pattern="[A-Za-z0-9 ]*"
                                 autofocus
-                                required
                             />
-                            <button class="mt-4 mb-4 btn btn-md btn-secondary">
-                                Save name
-                            </button>
-                        </form>
-                        <hr />
-                        <form action="/edit/editUsername" method="POST">
                             <input
                                 id="inputUsername"
                                 class="form-control text-light mb-3"
@@ -110,32 +107,14 @@
                                 minlength="5"
                                 maxlength="15"
                                 pattern="[A-Za-z0-9]*"
-                                required
                             />
-                            <button class="mt-4 mb-4 btn btn-md btn-secondary">
-                                Save username
-                            </button>
-                        </form>
-                        <hr />
-                        <form action="/edit/editEmail" method="POST">
                             <input
                                 id="inputEmail"
                                 class="form-control text-light mb-3"
                                 type="email"
                                 name="email"
                                 placeholder="Email"
-                                required
                             />
-                            <button class="mt-4 mb-4 btn btn-md btn-secondary">
-                                Save email
-                            </button>
-                        </form>
-                        <hr />
-                        <form
-                            action="/edit/editPassword"
-                            method="POST"
-                            id="pwForm"
-                        >
                             <input
                                 id="inputPassword"
                                 class="form-control text-light mb-3"
@@ -144,7 +123,6 @@
                                 placeholder="Password"
                                 minlength="7"
                                 maxlength="14"
-                                required
                             />
                             <input
                                 id="confirmPassword"
@@ -154,11 +132,13 @@
                                 placeholder="Confirm password"
                                 minlength="7"
                                 maxlength="14"
-                                required
                             />
                             <h6 id="matching"></h6>
-                            <button class="mt-4 mb-4 btn btn-md btn-secondary">
-                                Save password
+                            <button
+                                id="save"
+                                class="mt-4 mb-4 btn btn-md btn-secondary"
+                            >
+                                Save changes
                             </button>
                         </form>
                     </main>

@@ -1,7 +1,7 @@
 const Group = require("../models/groupModel"),
     User = require("../models/userModel");
 
-exports.getCurrentUser = async (req, res) => {
+exports.getCurrentUser = (req, res) => {
     if (req.session.user !== null) {
         res.status(200).json(req.session.user);
     } else {
@@ -24,7 +24,7 @@ exports.getUserGroups = async (req, res) => {
     }
 };
 
-exports.deleteUser = async (req, res) => {
-    await User.findOneAndDelete(req.session.user);
+exports.deleteUser = (req, res) => {
+    User.findOneAndDelete(req.session.user);
     res.status(200).json("login.html");
 };

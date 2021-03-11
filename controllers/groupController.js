@@ -56,34 +56,12 @@ exports.getGroupById = async (req, res) => {
     res.status(200).redirect("../group.html");
 };
 
-exports.updateGroup = async (req, res) => {
-    Group.findOneAndUpdate({ name: req.body.name }, req.body, (err, group) => {
-        if (err) throw err;
-        if (group !== null) {
-            res.status(200).json(group);
-        } else {
-            res.status(404);
-        }
-    });
-};
-
-exports.deleteGroup = async (req, res) => {
-    Group.findOneAndDelete({ name: req.body.name }, (err, group) => {
-        if (err) throw err;
-        if (group !== null) {
-            res.status(200).json(group);
-        } else {
-            res.status(404);
-        }
-    });
-};
-
 exports.joinGroup = async (req, res) => {
     const user = await User.findOne({ username: req.session.user.username });
     const group = await Group.findOne({ name: req.body.name });
     const member =
-        (await user.groups.includes(req.body.name)) ||
-        (await group.members.includes(req.session.user.name));
+        (await user.groups.includes(group.id)) ||
+        (await group.members.includes(user.username));
     if (!member) {
         user.groups.push(group.id);
         group.members.push(user.username);
