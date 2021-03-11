@@ -25,6 +25,28 @@ exports.getUserGroups = async (req, res) => {
 };
 
 exports.deleteUser = (req, res) => {
-    User.findOneAndDelete(req.session.user);
-    res.status(200).json("login.html");
+    User.findOneAndDelete(req.session.user, (err, user) => {
+        if (err) throw err;
+        req.session.destroy();
+        res.status(200).json("login.html");
+    });
+};
+
+exports.leaveGroup = async (req, res) => {
+    const user = await User.findOne({ username: req.session.user.username });
+    const group = await Group.findOne({ name: req.session.currentGroup.name });
+    if (
+        (await user.isMember(group.id)) &&
+        (await group.isMember(user.username))
+    ) {
+        user.groups.pull(group.id);
+        group.members.pull(user.username);
+        req.session.user = user;
+        req.session.currentGroup = group;
+        user.save();
+        group.save();
+        res.status(200).json("home.html");
+    } else {
+        res.status(200).json({ member: false });
+    }
 };

@@ -8,4 +8,6 @@ router.get("/getUserGroups", userController.getUserGroups);
 
 router.get("/deleteUser", userController.deleteUser);
 
+router.get("/leaveGroup", userController.leaveGroup);
+
 module.exports = router;

@@ -10,6 +10,7 @@ exports.createGroup = async (req, res) => {
             newGroup.owner = req.session.user.username;
             newGroup.created = date;
             newGroup.members.push(req.session.user.username);
+            newGroup.memberCount = 1;
             newGroup.save();
             req.session.currentGroup = newGroup;
             await User.findOne(
@@ -60,17 +61,18 @@ exports.joinGroup = async (req, res) => {
     const user = await User.findOne({ username: req.session.user.username });
     const group = await Group.findOne({ name: req.body.name });
     const member =
-        (await user.groups.includes(group.id)) ||
-        (await group.members.includes(user.username));
+        (await user.isMember(group.id)) ||
+        (await group.isMember(user.username));
     if (!member) {
         user.groups.push(group.id);
         group.members.push(user.username);
+        group.memberCount++;
         req.session.user.groups.push(group.id);
         req.session.currentGroup.members.push(user.username);
         user.save();
         group.save();
         res.status(200).json(group);
     } else {
-        res.status(405);
+        res.status(200).json({ joined: false });
     }
 };

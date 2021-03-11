@@ -30,8 +30,20 @@ $(document).ready(() => {
             "/group/joinGroup",
             { name: $("#groupName").text() },
             (group) => {
-                location.reload();
+                if (group.joined === false)
+                    $("#joined").html("You're already a member!");
+                else location.reload();
             }
         );
+    });
+
+    $("#leave").on("click", () => {
+        if (confirm("Leave group?")) {
+            $.get("/user/leaveGroup", (data) => {
+                console.log(data);
+                if (data === "home.html") window.location = "group.html";
+                else $("#member").html("You are not a member yet!");
+            });
+        }
     });
 });

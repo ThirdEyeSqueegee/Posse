@@ -26,4 +26,8 @@ userSchema.methods.validatePassword = async function (data) {
     return bcrypt.compare(data, this.password);
 };
 
+userSchema.methods.isMember = async function (group) {
+    return this.groups.includes(group);
+};
+
 module.exports = mongoose.model("User", userSchema);

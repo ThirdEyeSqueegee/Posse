@@ -4,3 +4,11 @@ $("#editForm").on("submit", (event) => {
         window.location = redirect;
     });
 });
+
+$("#delete").on("click", () => {
+    if (confirm("Delete account?")) {
+        $.get("/user/deleteUser", (redirect) => {
+            window.location = redirect;
+        });
+    }
+});

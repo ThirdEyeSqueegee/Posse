@@ -3,9 +3,3 @@ $.get("/user/getCurrentUser", (user) => {
     $("#username").html(user.username);
     $("#email").html(user.email);
 });
-
-$("#delete").on("click", () => {
-    $.get("/user/deleteUser", (redirect) => {
-        window.location = redirect;
-    });
-});

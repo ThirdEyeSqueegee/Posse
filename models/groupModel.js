@@ -11,4 +11,8 @@ const groupSchema = new Schema({
     posts: Array,
 });
 
+groupSchema.methods.isMember = async function (user) {
+    return this.members.includes(user);
+};
+
 module.exports = mongoose.model("Group", groupSchema);
