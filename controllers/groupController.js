@@ -32,15 +32,18 @@ exports.createGroup = async (req, res) => {
 };
 
 exports.getGroup = async (req, res) => {
-    Group.findOne({ name: req.body.name }, (err, group) => {
-        if (err) throw err;
-        if (group !== null) {
-            req.session.currentGroup = group;
-            res.status(200).json(group);
-        } else {
-            res.status(404);
+    Group.findOne(
+        { name: { $regex: req.body.name, $options: "i" } },
+        (err, group) => {
+            if (err) throw err;
+            if (group !== null) {
+                req.session.currentGroup = group;
+                res.status(200).json(group);
+            } else {
+                res.status(404);
+            }
         }
-    });
+    );
 };
 
 exports.getCurrentGroup = async (req, res) => {
