@@ -12,6 +12,7 @@ const userSchema = new Schema({
     groups: Array,
 });
 
+// Hash password before persisting to MongoDB
 userSchema.pre("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
@@ -22,10 +23,12 @@ userSchema.pre("save", async function (next) {
     }
 });
 
+// Validate user-entered password against hash from MongoDB
 userSchema.methods.validatePassword = async function (data) {
     return bcrypt.compare(data, this.password);
 };
 
+// Check if user is a member of the given group
 userSchema.methods.isMember = async function (group) {
     return this.groups.includes(group);
 };

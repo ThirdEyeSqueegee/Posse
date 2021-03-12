@@ -7,6 +7,7 @@ const options = {
     useFindAndModify: false,
 };
 
+// Set up MongoDB connection
 mongoose.connect(url, options).then(
     () => {
         console.log("Successfully connected to database");

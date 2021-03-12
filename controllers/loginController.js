@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 
+// If user exists, validate password and create session objects
 exports.handleLogin = async (req, res) => {
     User.findOne({ email: req.body.email }, async (err, user) => {
         if (err) throw err;

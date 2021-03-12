@@ -1,3 +1,4 @@
+// Populate My Groups with links to groups that the user is a member of
 $.get("/user/getUserGroups", async (groups) => {
     for (let i = 0; i < groups.length; i++) {
         await $("#groups").append(
@@ -10,10 +11,11 @@ $.get("/user/getUserGroups", async (groups) => {
     }
 });
 
+// Display group search results
 $("#searchForm").on("submit", (event) => {
     event.preventDefault();
     $.post(
-        "/group/getGroup",
+        "/group/getGroups",
         $("#searchForm").serialize(),
         (groups) => {
             $("#searchResults").empty();

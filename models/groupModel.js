@@ -11,6 +11,7 @@ const groupSchema = new Schema({
     posts: Array,
 });
 
+// Check if the given user is a member of group
 groupSchema.methods.isMember = async function (user) {
     return this.members.includes(user);
 };

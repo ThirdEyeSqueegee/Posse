@@ -1,14 +1,14 @@
 const Group = require("../models/groupModel"),
     User = require("../models/userModel");
 
+// Return the current user object
 exports.getCurrentUser = (req, res) => {
     if (req.session.user !== null) {
         res.status(200).json(req.session.user);
-    } else {
-        res.status(404);
-    }
+    } else res.status(404);
 };
 
+// Return an array of Objects with group IDs as keys and group names as values
 exports.getUserGroups = async (req, res) => {
     if (req.session.user !== null) {
         groups = [];
@@ -19,11 +19,10 @@ exports.getUserGroups = async (req, res) => {
             groups.push(elem);
         }
         res.status(200).send(groups);
-    } else {
-        res.status(404);
-    }
+    } else res.status(404);
 };
 
+// Delete user from MongoDB and redirect to login page
 exports.deleteUser = (req, res) => {
     User.findOneAndDelete(req.session.user, (err, user) => {
         if (err) throw err;
@@ -32,6 +31,7 @@ exports.deleteUser = (req, res) => {
     });
 };
 
+// Remove user from group (and group from user's array of groups)
 exports.leaveGroup = async (req, res) => {
     const user = await User.findOne({ username: req.session.user.username });
     const group = await Group.findOne({ name: req.session.currentGroup.name });
@@ -47,7 +47,5 @@ exports.leaveGroup = async (req, res) => {
         user.save();
         group.save();
         res.status(200).json("home.html");
-    } else {
-        res.status(200).json({ member: false });
-    }
+    } else res.status(200).json({ member: false });
 };

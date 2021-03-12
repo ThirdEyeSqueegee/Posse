@@ -5,6 +5,7 @@ $("#editForm").on("submit", (event) => {
     });
 });
 
+// Ask for confirmation before deleting user
 $("#delete").on("click", () => {
     if (confirm("Delete account?")) {
         $.get("/user/deleteUser", (redirect) => {

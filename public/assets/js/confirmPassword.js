@@ -1,3 +1,4 @@
+// Match passwords live and prevent submission if they do not match
 $("#inputPassword, #confirmPassword").on("keyup", () => {
     if ($("#inputPassword").val() === $("#confirmPassword").val()) {
         $("#register, #save").prop("disabled", false);

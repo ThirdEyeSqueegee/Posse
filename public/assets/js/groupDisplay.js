@@ -1,4 +1,5 @@
 $(document).ready(() => {
+    // Display group members and posts (in chronological order)
     $.get("/group/getCurrentGroup", (group) => {
         $("#groupName").html(group.name);
         $("#groupDesc").html(group.description);
@@ -27,6 +28,7 @@ $(document).ready(() => {
         }
     });
 
+    // Prevent joining if the current user is already a member
     $("#join").on("click", () => {
         $.post(
             "/group/joinGroup",
@@ -39,6 +41,7 @@ $(document).ready(() => {
         );
     });
 
+    // Prevent leaving if the current user is not a member
     $("#leave").on("click", () => {
         if (confirm("Leave group?")) {
             $.get("/user/leaveGroup", (data) => {

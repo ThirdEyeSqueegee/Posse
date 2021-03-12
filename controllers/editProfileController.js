@@ -1,5 +1,6 @@
 const User = require("../models/userModel");
 
+// Update only user-entered fields of user object in MongoDB
 exports.editProfile = (req, res) => {
     changes = {};
     for (const [key, value] of Object.entries(req.body)) {

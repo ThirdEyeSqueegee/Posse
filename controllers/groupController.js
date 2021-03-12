@@ -1,6 +1,7 @@
 const Group = require("../models/groupModel");
 const User = require("../models/userModel");
 
+// Create a group, persist to MongoDB, and update session objects
 exports.createGroup = async (req, res) => {
     Group.findOne({ name: req.body.name }, async (err, group) => {
         if (err) throw err;
@@ -25,25 +26,12 @@ exports.createGroup = async (req, res) => {
                 }
             );
             res.status(200).redirect("../group.html");
-        } else {
-            res.status(404);
-        }
+        } else res.status(404);
     });
 };
 
-exports.getGroup = async (req, res) => {
-    // Group.findOne(
-    //     { name: { $regex: req.body.name, $options: "i" } },
-    //     (err, group) => {
-    //         if (err) throw err;
-    //         if (group !== null) {
-    //             req.session.currentGroup = group;
-    //             res.status(200).json(group);
-    //         } else {
-    //             res.status(404);
-    //         }
-    //     }
-    // );
+// Get all groups that partially or exactly match the user-entered string
+exports.getGroups = async (req, res) => {
     Group.find(
         { name: { $regex: req.body.name, $options: "i" } },
         (err, groups) => {
@@ -54,18 +42,21 @@ exports.getGroup = async (req, res) => {
     );
 };
 
+// Get the current group
 exports.getCurrentGroup = async (req, res) => {
     if (req.session.currentGroup !== null)
         res.status(200).json(req.session.currentGroup);
     else res.status(404);
 };
 
+// Get the group with the given ID
 exports.getGroupById = async (req, res) => {
     const group = await Group.findById(req.params.id);
     req.session.currentGroup = group;
     res.status(200).redirect("../group.html");
 };
 
+// Join a group and update group, user, and session objects
 exports.joinGroup = async (req, res) => {
     const user = await User.findOne({ username: req.session.user.username });
     const group = await Group.findOne({ name: req.body.name });
